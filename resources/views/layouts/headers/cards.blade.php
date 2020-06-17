@@ -55,7 +55,7 @@
                     </a>
                 </div>
                 <div class="col-xl-3 col-lg-6">
-                    <a href="{{route('lab.index')}}" class="card card-stats mb-4 mb-xl-0">
+                    <a href="{{route('user.index')}}" class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
