@@ -16,7 +16,7 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text("description");
-            $table->bigInteger("lab_id")->unsigned();
+            $table->bigInteger("lab_id")->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign("lab_id")->references("id")->on("labs");

@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('issue.store') }}" autocomplete="off" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('device.issue.store', $device) }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Issue information') }}</h6>

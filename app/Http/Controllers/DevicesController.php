@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Device;
 use Illuminate\Http\Request;
+use App\Device;
+use App\Lab;
 
 class DevicesController extends Controller
 {
@@ -12,7 +13,7 @@ class DevicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Lab $lab)
     {
         //
     }
@@ -22,9 +23,9 @@ class DevicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Lab $lab)
     {
-        return view('devices.create');
+        return view('devices.create', compact('lab'));
     }
 
     /**
@@ -33,9 +34,18 @@ class DevicesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Lab $lab)
     {
-        //
+        $request->validate(['description' => 'required']);
+        $device = Device::create($request->all());
+        $device->lab()->associate($lab);
+        $device->save();
+
+        if($device){
+            return redirect( route('lab.show', $lab) )->withStatus(__('Device successfully created.'));
+        }else{
+            abort(500, 'Something went wrong!');
+        }
     }
 
     /**
@@ -44,34 +54,12 @@ class DevicesController extends Controller
      * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function show(Device $device)
+    public function show(Lab $lab, Device $device)
     {
         $issues = $device->issues()->paginate(5);
         return view('devices.showIssues', ['device' => $device, 'issues' => $issues]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Device  $device
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Device $device)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Device  $device
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Device $device)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -79,9 +67,11 @@ class DevicesController extends Controller
      * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Device $device)
+    public function destroy(Lab $lab, Device $device)
     {
-        //
+        $device->delete();
+        return redirect( route('lab.show', $lab) )->withStatus(__('Device successfully deleted.'));
+
     }
 
 

@@ -13,7 +13,7 @@
                 </div>
                 <div class="row justify-content-center mt-5">
                     <a href="{{route('lab.index')}}" class="btn btn-primary text-secondary">Back</a>
-                    <a class="btn btn-secondary text-dark">print</a>
+                    <button class="btn btn-secondary text-dark" onclick="window.print();return false;">print</button>
                 </div>
             </div>
         </div>

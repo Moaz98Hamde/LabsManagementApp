@@ -13,7 +13,7 @@
                                 <h3 class="mb-0">{{ __('device ') . $device->id }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                            <a href="{{route('device.createIssue', $device->id)}}" class="btn btn-sm btn-success">
+                            <a href="{{route('device.issue.create', $device->id)}}" class="btn btn-sm btn-success">
                                 {{ __('Add new issue') }}
                             </a>
                             <a href="{{route('lab.show', $device->lab)}}" class="btn btn-sm btn-primary">
@@ -43,6 +43,7 @@
                                     <th scope="col">{{ __('description') }}</th>
                                     <th class="text-center" scope="col">{{ __('status') }}</th>
                                     <th class="text-center" scope="col">{{ __('') }}</th>
+                                    <th class="text-center" scope="col">{{ __('') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,6 +67,15 @@
                                          <a href="{{route('resolve', $issue)}}" class="btn btn-success">Resolve</a>
                                          </td>
                                            @endif
+                                        <td>
+                                            <form  onsubmit="return confirm('are you sure?')"
+                                            action="{{route('device.issue.destroy', [$device, $issue])}}"
+                                            method="POST">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="btn btn-primary">Delete Issue</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

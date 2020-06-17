@@ -18,7 +18,6 @@ class CreateLabsTable extends Migration
             $table->string("name")->nullable(false);
             $table->integer("capacity")->default(30);
             $table->string("program")->nullable();
-            $table->string("code")->nullable();
             $table->text("location")->nullable();
             $table->string("supervisor");
             $table->timestamps();

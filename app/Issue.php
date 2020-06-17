@@ -8,6 +8,7 @@ class Issue extends Model
 {
 
     protected $fillable = ['title', 'description', 'device_id'];
+    protected $casts = ['resolved' => 'boolean'];
 
     public function device(){
         return $this->belongsTo('App\Device');

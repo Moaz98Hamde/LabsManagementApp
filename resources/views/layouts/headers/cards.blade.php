@@ -17,15 +17,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>100%</span>
-                                <span class="text-nowrap">Available</span>
-                            </p>
                         </div>
                     </a>
                 </div>
                 <div class="col-xl-3 col-lg-6">
-                    <a href="/" class="card card-stats mb-4 mb-xl-0">
+                    <a href="{{route('lab.index')}}" class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -38,15 +34,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 88%</span>
-                                <span class="text-nowrap">Available</span>
-                            </p>
                         </div>
                     </a>
                 </div>
                 <div class="col-xl-3 col-lg-6">
-                <a href="/" class="card card-stats mb-4 mb-xl-0">
+                <a href="{{route('lab.index')}}" class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -59,16 +51,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-warning mr-2"><i class="fas fa-exclamation-triangle">
-                                    </i> 3%</span>
-                                <span class="text-nowrap">Remaining</span>
-                            </p>
                         </div>
                     </a>
                 </div>
                 <div class="col-xl-3 col-lg-6">
-                    <a href="/" class="card card-stats mb-4 mb-xl-0">
+                    <a href="{{route('lab.index')}}" class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -81,10 +68,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
                         </div>
                     </a>
                 </div>

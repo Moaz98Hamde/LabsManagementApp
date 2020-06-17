@@ -13,7 +13,7 @@ class IssuesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Device $device)
     {
         //TODO :make a page for displaying all issues ..
     }
@@ -23,9 +23,9 @@ class IssuesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Device $device)
     {
-        return view('issues.create');
+         return view('issues.create', compact('device'));
     }
 
     /**
@@ -34,22 +34,20 @@ class IssuesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Device $device)
     {
         $data = $request->validate([
             'title' => 'string|required',
             'description' => 'string|required',
-            'device_id' => 'required'
         ]);
 
-        $data['device_id'] = $request['device_id'];
         $issue = Issue::create($data);
-        $device = Device::findOrFail($data['device_id']);
-        $issues = $device->issues()->paginate(5);
+        $issue->device()->associate($device);
+        $issue->save();
+
         if($issue){
-            return redirect(
-              route('device.show',compact('device', 'issues'))
-            )->withStatus('Issue created successfully');
+            return redirect( route('lab.device.show', ['lab' => $device->lab, 'device' => $device]) )
+            ->withStatus('Issue created successfully');
         }else{
             return abort(500);
         }
@@ -62,12 +60,11 @@ class IssuesController extends Controller
      * @param  \App\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Issue $issue)
+    public function destroy(Device $device, Issue $issue)
     {
-        $device = $issue->device;
         $issue->delete();
         return redirect(
-            route('device.show', compact('device'))
+            route('lab.device.show', ['lab' => $device->lab, 'device' => $device])
         )->withStatus( __('Issue deleted successfully'));
     }
 
@@ -76,12 +73,14 @@ class IssuesController extends Controller
 
     public function resolveIssue(Issue $issue){
         $issue->resolve();
-        return redirect(route('device.show', $issue->device))->withStatus(__('Issue resolved successfully'));
+        return redirect( route('lab.device.show', ['lab' => $issue->device->lab, 'device' => $issue->device] ) )
+        ->withStatus(__('Issue resolved successfully'));
     }
 
 
-    public function retreatIssue(Issue $issue){
+    public function retreatIssue(Device $device, Issue $issue){
         $issue->retreat();
-        return redirect(route('device.show', $issue->device))->withStatus(__('Issue retreated successfully'));
+        return redirect( route('lab.device.show', ['lab' => $issue->device->lab, 'device' => $issue->device]) )
+        ->withStatus(__('Issue retreated successfully'));
     }
 }

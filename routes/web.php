@@ -30,10 +30,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('lab/{lab}/program', 'LabController@getProgram')->name('getProgram');;
     Route::get('/device/{device}/issue', 'DevicesController@createIssue')->name("device.createIssue");
 
-    Route::resource('/device', 'DevicesController');
+    Route::resource('lab.device', 'DevicesController');
 
 
-    Route::resource('issue', 'IssuesController');
+    Route::resource('device.issue', 'IssuesController');
     Route::get('issue/{issue}/resolve', 'IssuesController@resolveIssue')->name("resolve");
     Route::get('issue/{issue}/retreat', 'IssuesController@retreatIssue')->name("retreat");
 

@@ -123,6 +123,4 @@ class LabController extends Controller
 
 
 
-
-
 }

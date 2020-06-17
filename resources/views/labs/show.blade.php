@@ -13,7 +13,7 @@
                                 <h3 class="mb-0">{{ __('Lab ') . $lab->name }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('device.create') }}" class="btn btn-sm btn-success">
+                                <a href="{{ route('lab.device.create', $lab->id) }}" class="btn btn-sm btn-success">
                                     {{ __('Add new device') }}
                                 </a>
                                 <a href="{{ route('lab.index') }}" class="btn btn-sm btn-primary">
@@ -50,7 +50,7 @@
                                         <td>{{ $device->description }}</td>
                                         <td>
                                             @if($device->issues)
-                                            <a class="text-danger" href="{{route('device.show', $device)}}">
+                                            <a class="text-danger" href="{{route('lab.device.show', [$lab, $device])}}">
                                                 has
                                                 {{$device->issues()->where('resolved', 0)->count()}}
                                                unresolved issues
