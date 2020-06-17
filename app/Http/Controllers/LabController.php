@@ -122,5 +122,11 @@ class LabController extends Controller
     }
 
 
+    public function labQR(Lab $lab){
+        $code = \QrCode::size(300)->generate( Route('api.devices', $lab) );
+        return view('labs.qrCode', ['code' =>$code, 'name' => $lab->name]);
+    }
+
+
 
 }

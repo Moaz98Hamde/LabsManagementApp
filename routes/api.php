@@ -19,8 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::get('labs', 'ApiController@allLabs');
-Route::get('labs/{lab}/devices/', 'ApiController@allLabDevices');
-Route::get('labs/{lab}/devices/{device}', 'ApiController@device');
-Route::get('labs/{lab}/devices/{device}/issues', 'ApiController@deviceIssues');
-Route::post('labs/{lab}/devices/{device}/issues', 'ApiController@newIssue');
+Route::get('labs', 'ApiController@allLabs')->name('api.labs');
+Route::get('labs/{lab}/devices/', 'ApiController@allLabDevices')->name('api.devices');
+Route::get('labs/{lab}/devices/{device}', 'ApiController@device')->name('api.device');
+Route::get('labs/{lab}/devices/{device}/issues', 'ApiController@deviceIssues')->name('api.device.issues');
+Route::post('labs/{lab}/devices/{device}/issues', 'ApiController@newIssue')->name('api.device.issue.store');
