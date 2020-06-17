@@ -22,18 +22,18 @@ class ApiController extends Controller
 
 
     public function device(Lab $lab, Device $device){
-        $device = $lab->devices()->findOrFail($device);
+        $device = $lab->devices()->findOrFail($device->id);
         return response()->json(['status' => 'success', 'data' => $device->first()], 200);
     }
 
     public function deviceIssues(Lab $lab, Device $device){
-        $device = $lab->devices()->findOrFail($device);
+        $device = $lab->devices()->findOrFail($device->id);
         return response()->json(['status' => 'success', 'data' => $device->first()->issues], 200);
     }
 
 
     public function newIssue(Request $request, Lab $lab, Device $device){
-        $device = $lab->devices()->findOrFail($device);
+        $device = $lab->devices()->findOrFail($device->id);
         $device = $device->first();
 
         $request->validate([
