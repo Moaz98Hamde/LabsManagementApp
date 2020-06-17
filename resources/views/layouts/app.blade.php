@@ -7,9 +7,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Argon Dashboard') }}</title>
-        <!-- Favicon -->
-        <link href="{{ asset('argon', true) }}/img/brand/favicon.png" rel="icon" type="image/png">
+        <title>{{ config('app.name', 'Lab management') }}</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <!-- Icons -->
