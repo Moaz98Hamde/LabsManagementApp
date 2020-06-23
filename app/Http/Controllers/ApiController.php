@@ -15,7 +15,7 @@ class ApiController extends Controller
 
 
     public function allLabDevices(Lab $lab){
-        $devices = $lab->devices;
+        $devices = $lab->devices->load('lab');
 
         return response()->json(['status' => 'success', 'data' => $devices], 200);
     }
@@ -23,12 +23,12 @@ class ApiController extends Controller
 
     public function device(Lab $lab, Device $device){
         $device = $lab->devices()->findOrFail($device->id);
-        return response()->json(['status' => 'success', 'data' => $device->first()], 200);
+        return response()->json(['status' => 'success', 'data' => $device->first()->load('lab')], 200);
     }
 
     public function deviceIssues(Lab $lab, Device $device){
         $device = $lab->devices()->findOrFail($device->id);
-        return response()->json(['status' => 'success', 'data' => $device->first()->issues], 200);
+        return response()->json(['status' => 'success', 'data' => $device->first()->issues->load('device')], 200);
     }
 
 

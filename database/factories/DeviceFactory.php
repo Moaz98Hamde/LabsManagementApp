@@ -9,6 +9,5 @@ use App\Device;
 $factory->define(App\Device::class, function (Faker $faker) {
     return [
         "description" => $faker->sentence(3),
-        "lab_id" => factory(App\Lab::class),
     ];
 });

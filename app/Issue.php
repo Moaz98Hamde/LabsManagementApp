@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Issue extends Model
 {
 
-    protected $fillable = ['title', 'description', 'device_id'];
+    protected $fillable = ['title', 'description'];
     protected $casts = ['resolved' => 'boolean'];
+    protected $hidden = ['device_id'];
 
     public function device(){
         return $this->belongsTo('App\Device');

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
 
-    protected $fillable = ['description', 'lab_id'];
+    protected $fillable = ['description'];
+    protected $hidden = ['lab_id'];
 
     public function issues(){
         return $this->hasMany('App\Issue');
