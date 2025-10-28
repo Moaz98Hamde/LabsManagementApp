@@ -28,7 +28,7 @@ class ProfileController extends Controller
     {
         auth()->user()->update($request->all());
 
-        return back()->withStatus(__('Profile successfully updated.'));
+        return redirect()->route('profile.edit')->withStatus(__('Profile successfully updated.'));
     }
 
     /**

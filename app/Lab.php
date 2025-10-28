@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use DateTimeInterface;
 
 class Lab extends Model
 {
@@ -37,6 +38,17 @@ class Lab extends Model
     // Get all the devices in the lab
     public function devices(){
         return $this->hasMany('App\Device');
+    }
+
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @param  \DateTimeInterface  $date
+     * @return string
+     */
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 
 

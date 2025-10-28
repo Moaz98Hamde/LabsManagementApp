@@ -20,7 +20,7 @@ class LabRequest extends FormRequest
             'capacity' => 'numeric',
             'program' => 'image',
             'location' => 'string',
-            'supervisor' => 'string'
+            'supervisor' => 'required|string'
         ];
     }
 }
